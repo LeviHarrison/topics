@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage[a4paper, total={6in, 9.5in}]{geometry}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage[makeroom]{cancel}
+
+\begin{document}
+
+\begin{center}
+    \LARGE{Problem Set 6}\\[0.5em]
+    \large{Levi Harrison}\\[0.5em]
+    \small{November 21, 2023}
+\end{center}
+
+\,
+
+\begin{enumerate}
+    \item Suppose we have the sets $A = \{1, 2, 3\}$ and $B = \{\pi, 7\}$. How many possible relations are there on A? How many possible functions are there from A to B?
+\end{enumerate}
+
+A relation is defined as the subset of the Cartesian product of two sets, which in this case are the same set: $A \times A$. Furthermore, all the possible relations would thus be contained of in the power set of $A \times A$. So, the total number of possible relations in $A$ would be the cardinality of that power set:
+
+\[|\mathcal{P}(A \times A)| = 2^{|A \times A|} = 2^{|A| \times |A|} = 2^9 = 512\]
+
+As for the second part of the question, we know that because we are looking for functions, each preimage (in set $A$) needs to correspond to exactly one image (in set $B$). So each of the 3 elements in $A$ could correspond to either of the 2 elements in $B$, so there are $2^3 = 8$ possible functions.
+
+\begin{enumerate}[resume]
+    \item Can you invent a strict partial order on the complex numbers?
+\end{enumerate}
+
+Let us define the relation $\vdash$ on the set of all complex numbers $C$, where $\vdash$ orders the complex numbers by the their real component, in ascending order. For example, take $z_1 = a + bi$ and $z_2 = c + di$, for $z_1, z_2 \in C$. When $a < c$, $z_1 \vdash z_2$ and when $c < a$, $z_2 \vdash z_1$. We will now prove that $\vdash$ is a strict partial order.
+
+\begin{proof}
+    In order to prove that $\vdash$ is a strict partial order, we will show that it satisfies the three necessary conditions:
+
+    \begin{enumerate}
+        \item Nonreflexivity
+    \end{enumerate}
+
+    Let $z = a + bi$, for $z \in C$. Clearly, $z \:\cancel{\vdash}\: z$, as $a \not< a$. Thus, $\vdash$ is nonreflexive.
+
+    \begin{enumerate}[resume]
+        \item Antisymmetry
+    \end{enumerate}
+
+    Let $z_1 = a + bi$ and $z_2 = c + di$ for $z_1, z_2 \in C$, where $a < c$. Therefore, $z_1 \vdash z_2$. But clearly, $z_2 \:\cancel{\vdash}\: z_1$, because $c \not< a$. So, $\vdash$ is antisymmetric.
+
+    \begin{enumerate}[resume]
+        \item Transitivity
+    \end{enumerate}
+
+    Let $z_1 = a + bi$, $z_2 = c + di$, and $z_3 = e + fi$ for $z_1, z_2, z_3 \in C$. If $z_1 \vdash z_2$ and $z_2 \vdash z_3$, then by the definition of the relation $a < c$ and $c < e$. So then $a < e$ and $z_1 \vdash z_3$. Thus, $\vdash$ is transitive.
+
+    \,
+
+    Since we have proved that $\vdash$ satisfies all three conditions, it has been shown that it is a strict partial order on the complex numbers.
+\end{proof}
+
+\begin{enumerate}[resume]
+    \item Find the Image (i.e., the set of all “images” or range) of the function $f:\textbf{R} \rightarrow \textbf{R}$ given by the polynomial $x^4 + x^3 - x^2 - 1$. Also find the preimage(s) of 1.
+\end{enumerate}
+
+The image of the function can simply be derived by finding the range of the polynomial.
+
+First we check the endpoints, finding that clearly both go to $+\infty$:
+
+\[\lim_{x\to\infty}\ x^4 + x^3 - x^2 - 1 = \infty\]
+\[\lim_{x\to-\infty}\ x^4 + x^3 - x^2 - 1 = \infty\]
+
+Next, we find the critical and inflection points, and then locate the absolute minimum:
+
+\[\frac{d}{dx}(x^4 + x^3 - x^2 - 1) = 4x^3 + 3x^2 - 2x = 0\]
+\[x \approx -1.175, 0, 0.425\]
+\[\frac{d^2}{dx^2}(4x^3 + 3x^2 - 2x) = 12x^2 + 6x - 2\]
+\[f''(-1.175) = 7.5175, f''(0) = -2, f''(0.425) = 2.175\]
+\[f(-1.175) = -2.097, f(0.425) = -1.071\]
+\[min \approx -2.097\]
+
+So, the image is approximately $[-2.1, \infty)$
+
+\,
+
+We can find the preimage(s) of 1 by setting:
+
+\[1 = x^4 + x^3 - x^2 - 1\]
+
+Using a calculator, we get the preimages of approximately $1.157$ and $-1.854$.
+
+\begin{enumerate}[resume]
+    \item Consider the set $E\mbox{*}$ of all points in the Euclidean plane except for the origin. Define a relation on $E\mbox{*}$ by declaring that $P_1 \sim P_2$ whenever $x_1y_2 = x_2y_1$. Prove that $\sim$ is an equivalence relation, and describe its equivalence classes.
+\end{enumerate}
+
+\begin{proof}
+    In order to prove that $\sim$ is an equivalence relation, we must prove that it satisfies all three properties of an equivalence relation, as follows:
+
+    \begin{enumerate}
+        \item Reflexivity
+    \end{enumerate}
+
+    Take the points $P_1 = (x, y)$ and $P_2 = (x, y)$ for $P_1, P_2 \in E\mbox{*}$. Clearly, $xy = xy$ ($P_1 \sim P_2$), so $\sim$ is reflexive.
+
+    \begin{enumerate}[resume]
+        \item Symmetry 
+    \end{enumerate}
+
+    Take the points $P_1 = (x_1, y_1)$ and $P_2 = (x_2, y_2)$ for $P_1, P_2 \in E\mbox{*}$. If $P_1 
+    \sim P_2$, then we have that $x_1y_2 = x_2y_1$. This is clearly means that similarly, $x_2y_1 = x_1y_2$, thus establishing that $P_2 \sim P_1$. Therefore, $\sim$ is symmetric.
+    
+    \begin{enumerate}[resume]
+        \item Transitivity
+    \end{enumerate}
+
+    Take the points, $P_1 = (x_1, y_1), P_2 = (x_2, y_2), P_3 = (x_3, y_3)$ for $P_1, P_2, P_3 \in E\mbox{*}$. Suppose that $P_1 \sim P_2$ and $P_2 \sim P_3$, so $x_1y_2 = x_2y_1$ and $x_2y_3 = x_3y_2$. If we multiply the two equations, we get:
+    
+    \[x_1y_2x_2y_3 = x_2y_1x_3y_2\]
+    \[x_1y_3 = x_3y_1\]
+
+    Which shows that $P_1 \sim P_3$, so $\sim$ is transitive.
+
+    \,
+
+    Thus, we have proved that $\sim$ has satisfied all three properties of an equivalence relation.
+\end{proof}
+
+Now for the equivalence classes. For the class $[(x_2, y_2)]$, where $(x_2, y_2) \in E\mbox{*}$, we a member of that class, $(x_1, y_1) \in E\mbox{*}$, so that $x_1y_2$ = $x_2y_1$ as defined. Rewriting this equation to isolate the constants, we have: $\frac{x_1}{y_1} = \frac{x_2}{y_2}$, or $\frac{x_1}{y_1} = z$ for $z \in \mathcal{Z}$. This equation clearly falls into the form of a line through the origin (but not including the origin because the $E\mbox{*}$ excludes the origin). Thus describes the equivalence classes of $\sim$.
+
+\begin{enumerate}[resume]
+    \item Suppose we define $R^{-1}$ to be the inverse of the relation R on a set A. For example, if $A = \{1, 2, 3\}$ and $R = \{(1, 1), (1, 3)\}$ then $R^{-1} = \{(1, 1), (3, 1)\}$. If a relation R is transitive, is $R^{-1}$ necessarily transitive? What would need to be true about R and its inverse to guarantee that they are both symmetric?
+\end{enumerate}
+
+Take the elements $x_1$ and $x_2$, where $x_1 = x_2$. As relation R is defined as transitive, $x_1$ relates to $x_2$ under R. Given $R^{-1}$ is the inverse of R, then $x_2$ relates to $x_1$, so $R^{-1}$ is also transitive.
+
+\,
+
+Moving on, take two elements, $x$ and $y$. If we say that under R, $x$ relates to $y$, $y$ would relate to $x$ under $R^{-1}$. For R to be symmetric, then $y$ would also need to relate to $x$ under it. And for $R^{-1}$ to be symmetric, $x$ would need to relate $y$ under it. So, would have that under R, $x$ relates to $y$ and $y$ relates to $x$, and under $R^{-1}$, $y$ relates to $x$ and $x$ relates to $y$. So clearly, for R and $R^{-1}$ to both by symmetric, they would have to be equivalent to eachother.
+
+\end{document}
