@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage[a4paper, total={6in, 9.5in}]{geometry}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage[makeroom]{cancel}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{amsfonts}
+\usepackage[group-separator={,}]{siunitx}
+
+\begin{document}
+
+\begin{center}
+    \LARGE{Problem Set 8}\\[0.5em]
+    \large{Levi Harrison}\\[0.5em]
+    \small{January 19, 2023}
+\end{center}
+
+\,
+
+\begin{enumerate}
+    \item Drill, Baby, Drill!
+
+          You are the CEO of an oil-drilling company, and you want to get a new venture going before the climate radicals get some new regulations on the books. The cost of drilling is one million dollars. If you find oil, you'll gain four million in operating profits; if you don't, it's all sunk costs. Let p stand for the probability that you find oil; draw a decision tree to illustrate this decision problem. Indicate actions and outcomes.
+
+          \,
+
+          \includegraphics[scale=0.3]{decision tree 1}
+
+          \begin{enumerate}[label=(\alph*)]
+              \item Your assistant, Sarah Palin, thinks there is a 60\% chance of striking oil. Is it worth it to go ahead?
+          \end{enumerate}
+
+          Well, if there was a 60\% chance of striking oil, that would mean an expected value (profit) of $0.6 \cdot \num{3000000} + 0.4 \cdot \num{-1000000} = \$\num{1400000}$. This clearly is more than the \$0 of profit earned from not drilling, so it is worth it to go ahead.
+
+          \begin{enumerate}[resume]
+              \item What is the minimum value for $p$ that would motivate you to proceed with the new venture?
+          \end{enumerate}
+
+          We want to avoid loosing money, so we have to achieve and expected value of at least 0. We can write an equation for this as follows:
+
+          \[p \cdot \num{3000000} + (1 - p) \cdot \num{-1000000} \geq 0\]
+
+          Solving this equation, we get $p \geq 0.25$. So the minimum value of $p$ would be 0.25.
+
+    \item A patient has a very serious disease and is facing death in 3 months without treatment; if he has a successful (but risky) surgery, he will live for 12 months; alas, there is a 30\% chance the surgery will fail and he will die immediately. Let $v(x)$ be the payoff function for living x months, and assume $v(12) = 1$ and $v(0) = 0$.
+
+          \begin{enumerate}[label=(\alph*)]
+              \item What's the lowest payoff that we could have for $v(3)$ such that having surgery is the best response?
+          \end{enumerate}
+
+          The expected value for the surgery, given the defined payoff function and the 30\% chance of death, is $0.7 \cdot v(12) + 0.3 \cdot v(0) = 0.7 \cdot 1 + .3 \cdot 0 = 0.7$. Thus, the payoff for not performing the surgery and only living for 3 more months, $v(3)$, could be anything less than 0.7 to make having the surgery the best response.
+
+          \begin{enumerate}[resume]
+              \item Assume $v(3) = 0.8$. There is a test that can help decide whether surgery is successful. If surgery is to be successful, this test will give a positive result 90\% of the time; if the surgery will not be successful, 10\% of the time it will still give a positive result. If the test is positive, should the surgery be done?
+          \end{enumerate}
+
+          We can use the Bayes' theorem to evaluate this situation, where $A$ is the probablity of the surgery being successful given $B$, the test being positive.
+
+          \[P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}\]
+          \[P(\text{successful surgery}|\text{+}) = \frac{0.9 \cdot 0.7}{0.9 \cdot 0.7 + 0.1 \cdot 0.3} = 0.954...\]
+
+          Therefore, the expected value for the surgery would be $0.954 \cdot v(12) = 0.954 \cdot 1 = 0.954$, which is clearly greater than $v(3)$. Therefore, the surgery should be done.
+
+          \begin{enumerate}[resume]
+              \item Above, the test had no cost; what if there is a small chance (0.0005, say) of death from the test, should the patient opt to have the test prior to deciding on the operation (still assuming $v(3) = 0.8$)?
+          \end{enumerate}
+
+          Here is a decision tree modeling this more complicated scenario:
+
+          \,
+
+          \includegraphics[scale=0.45]{decision tree 2}
+
+          \,
+
+          Using this decision tree, we can see that the expected value of taking the test and then having the surgery is $0.9995 \cdot 0.954 \cdot 1 = 0.953$. So then you would still want to do the surgery.
+
+    \item Assuming a discount rate of 5.5\% (that's what I got on the web); which of the two following annual payments would you prefer? If it makes you feel better, you can imagine these numbers are millions of dolllars.
+
+          \begin{enumerate}[label=(\alph*)]
+              \item 50, 50, 250, 400
+          \end{enumerate}
+          \begin{enumerate}[resume]
+              \item 100, 125, 50, 300
+          \end{enumerate}
+
+          We can calculate the value of a payment $p$ in year $n$ using the following formula:
+
+          \[\frac{p}{(1 + \frac{5.5}{100})^{n-1}}\]
+
+          From here, we can derive a formula for the sum of the values of all the payments over time:
+
+          \[\sum_{n=1}^{4}\frac{p_n}{1.055^{n-1}}\]
+
+          Using this formula, we have scheme (a) netting \$662.65 and (b) netting \$518.89. So I would prefer payment scheme (a).
+\end{enumerate}
+
+\end{document}
