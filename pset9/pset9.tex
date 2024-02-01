@@ -1,0 +1,163 @@
+\documentclass{article}
+\usepackage[a4paper, total={7in, 9.5in}]{geometry}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage[makeroom]{cancel}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{amsfonts}
+\usepackage[group-separator={,}]{siunitx}
+\usepackage{multirow}
+
+\begin{document}
+
+\begin{center}
+    \LARGE{Problem Set 9}\\[0.5em]
+    \large{Levi Harrison}\\[0.5em]
+    \small{Febuary 1, 2023}
+\end{center}
+
+\,
+
+\begin{enumerate}
+    \item An Election
+
+          Two candidates, Donald and Nikki, are running for office. Each has the same options for campaign strategies: focus on the positive $[P]$; focus on one's own positives and attack the opponent, a more balanced approach $[B]$; of just trash the opponent non-stop $[T]$. All a candidate cares about is the probability of winning, so assume that if a candidate expects to win with a probability $p \in [0, 1]$, then his payoff is $p$. The probability that a candidate wins depends on both his strategy and his opponent's according to the following principles or rules:
+
+          \begin{itemize}
+              \item If both choose same campaign style, then it's 50-50.
+              \item If one candidate goes positive and the other stays balanced, the nice guy loses for sure.
+              \item If one stays positive and the other goes negative, then the nice guy has a 30\% chance.
+              \item If one goes negative and the other stays balanced, the bad boy has a 60\% shot.
+          \end{itemize}
+
+          \begin{enumerate}[label=(\alph*)]
+              \item Model this scenario as a normal-form game in symbolic glory.
+          \end{enumerate}
+
+          \[N = \{1, 2\}\]
+          \[s_1, s_2 = \{P, B, T\}\]
+
+          \[v_1(P, P), v_1(B, B), v_1(T, T) = 0.5\]
+          \[v_1(P, B) = 0\]
+          \[v_1(P, T) = 0.3\]
+          \[v_1(T, B) = 0.6\]
+
+          \begin{enumerate}[resume]
+              \item Write down the game in matrix form.
+          \end{enumerate}
+
+          \centerline{Player 2}
+          \begin{center}
+              Player 1
+              \begin{tabular}{|c|c|c|c|}
+                  \hline
+                    & P      & B       & T      \\ \hline
+                  P & .5, .5 & 0, 1    & .3, .7 \\ \hline
+                  B & 1, 0   & .5, .5, & .4, .6 \\ \hline
+                  T & .7, .3 & .6, .4  & .5, .5 \\ \hline
+              \end{tabular}
+          \end{center}
+
+          \begin{enumerate}[resume]
+              \item What happens at each stage of IESDS? Will this procedure lead to a clear prediction?
+          \end{enumerate}
+
+          From the get-go, we elimate action P for player 1 because it will never win against action by player 2.
+
+          By the same logic, we eliminate the P action for player 2.
+
+          \,
+
+          \centerline{Player 2}
+          \begin{center}
+              Player 1
+              \begin{tabular}{|c|c|c|}
+                  \hline
+                    & B       & T      \\ \hline
+                  B & .5, .5, & .4, .6 \\ \hline
+                  T & .6, .4  & .5, .5 \\ \hline
+              \end{tabular}
+          \end{center}
+
+          Looking at the bi-matrix now, it's clear we can go through a similar process for action B for player 1 (it never beats out player 2) and action B for player 2 (same thing).
+
+          \,
+
+          \centerline{Player 2}
+          \begin{center}
+              Player 1
+              \begin{tabular}{|c|c|}
+                  \hline
+                    & T      \\ \hline
+                  T & .5, .5 \\ \hline
+              \end{tabular}
+          \end{center}
+
+          Now we're just left with one option. So both candidates will \textbf{T}rash eachother.
+
+          \,
+
+    \item You and your date want to split a pizza. Each player will have $s_i$ of the 8 slices, so long as you together demand no more than 8. If you do demand more than 8, Pietro the Pizza Man will scream, “No za for you!” Assume you care only about how much pizza you get (nice date night!), and more is better.
+
+          \begin{enumerate}[label=(\alph*)]
+              \item Write out or graph each player's best-response correspondence.
+          \end{enumerate}
+
+          \[BR_1(k_2) = 8 - k_2\]
+          \[BR_2(k_1) = 8 - k_1\]
+
+          \begin{enumerate}[resume]
+              \item What outcomes can be supported as pure-strategy Nash equilibria?
+          \end{enumerate}
+
+          Well, any combination that adds up to 8 really, as dictated by the best response functions. So $(0, 8), (1, 7), (2, 6), \\ (3, 5), (4, 4), (5, 3), (6, 2), (7, 1)$ and $(8, 0)$ (assuming we can't split slices). Those actions will maximize the amount of pizza one player receives based on what the other player already took, reaching a Nash equilibrium.
+
+          \,
+
+    \item You and your $n - 1$ roommates have 5 hours (each) of free time to clean the apartment. Nobody likes cleaning, but everyone likes it clean! So if roommate $i$ spends $s_i$ hours cleaning, he has $\sum_{j=1}^{n} s_j$ happiness, watered down by $cs_i$ discontent for the time *he* spent cleaning. Let's say the payoff function looks like this:
+
+          \[v_i(s_1, s_2, \dots, s_n) = -cs_i + \sum_{j=1}^{n} s_j\]
+
+          Let's treat this as a static game (simultaneous choices).
+
+          \begin{enumerate}[label=(\alph*)]
+              \item Find the Nash equilibrium if $c < 1$.
+          \end{enumerate}
+
+          First, we take the partial derivative of the payoff function with respect to $s_i$, the number of hours worked.
+
+          \[\frac{\partial v_i}{\partial s_i} = -c + 1\]
+
+          When $c < 1$, as can be seen, the payoff function for all roomates is always increasing with respect to the number of hours each roomates cleans (regardless of what anyone else does). Thus, no matter how long any of the other roomates has cleaned, it is in the best interest of each roomate to clean more. So, the Nash equilibrium will be reached when each roomate has cleaned for as long as they can, 5 hours.
+
+          \begin{enumerate}[resume]
+              \item Find the Nash equilibrium if $c > 1$.
+          \end{enumerate}
+
+          However, when $c > 1$, the payoff function is now decreasing as each roomate works more, thus no one will work any hours (once again regardless of what any other roomate does). So the Nash equilibrium is no one doing any cleaning.
+
+          \begin{enumerate}[resume]
+              \item Set $n = 5$ and $c = 2$. Is the Nash equilibrium Pareto efficient? If not, can you find an outcome in which everyone is better off than in the Nash equilibrium outcome?
+          \end{enumerate}
+
+          As demonstrated above, when $c = 2$ no one will work at all, so the payoff for all roomates will be as follows:
+
+          \[
+              v_i(s_1, s_2, \dots, s_n) = -cs_i + \sum_{j=1}^{n} s_j = -2(0) + 0 = 0
+          \]
+
+          However, if everyone just decided to be good boys anyway and did 5 hours of cleaning, the payoffs for each would look like this:
+
+          \[
+              -2(5) + 5 \times 5 = 15
+          \]
+
+          Clearly, this outcome Pareto dominates the outcome from the Nash equilibrium, as the payoff is higher for all roomates. Thus, the Nash equilibrium outcome is not Pareto efficient as it is dominated.
+
+          \,
+
+          \textit{Credit: Nathan}
+\end{enumerate}
+
+\end{document}
