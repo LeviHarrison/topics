@@ -1,0 +1,193 @@
+\documentclass{article}
+\usepackage[a4paper, total={7in, 9.5in}]{geometry}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage[makeroom]{cancel}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{amsfonts}
+\usepackage[group-separator={,}]{siunitx}
+\usepackage{multirow}
+\usepackage{amsmath}
+
+\begin{document}
+
+\begin{center}
+    \LARGE{Problem Set 10}\\[0.5em]
+    \large{Levi Harrison}\\[0.5em]
+    \small{February 12, 2024}
+\end{center}
+
+\,
+
+\begin{enumerate}
+    \item After The Seniors Leave
+
+          Some years, after the seniors leave, there are only two juniors in Topics or Multi. Suppose we were in such a situation this year (say Levi and Raj just quit school, leaving only Daniel and Nathan, for example - we don't know who will quit, so we will call them Player 1 and Player 2). Mr. Bettendorf wants to give only one A in the fourth marking period, and he will give that A to the boy who puts in the most time on his final project. If they put in the same amount of time, Mr. B will flip a coin for the A. In terms of payoffs, the A is worth 3, and the B (or whatever) is 0; no time is 0, a little time is -1, and lot of time is -2.
+
+          \begin{enumerate}[label=(\alph*)]
+              \item Write down the game in matrix form.
+          \end{enumerate}
+
+          \,
+
+          \centerline{Player 2}
+          \begin{center}
+              Player 1
+              \begin{tabular}{|c|c|c|c|}
+                  \hline
+                                & No time  & A little time & A lot of time \\ \hline
+                  No time       & 1.5, 1.5 & 0, 2          & 0, 1          \\ \hline
+                  A little time & 2, 0     & .5, .5        & -1, 1         \\ \hline
+                  A lot of time & 1, 0     & 1, -1         & -.5, -.5      \\ \hline
+              \end{tabular}
+          \end{center}
+
+          \,
+
+          \begin{enumerate}[resume]
+              \item Are any pure strategies weakly or strictly dominated?
+          \end{enumerate}
+
+          Yes.
+
+          \begin{enumerate}[resume]
+              \item Is there a pure-strategy Nash equilibrium?
+          \end{enumerate}
+
+          No.
+
+          \begin{enumerate}[resume]
+              \item Is there a mixed-strategy Nash equilibrium?
+          \end{enumerate}
+
+          We can prove this using the Nash Existance Theorem.
+
+          Let's consider the payoff functions for Player 1 ($v_1(N, ...), v_1(L, ...), v_1(M, ...)$). In order for there to be a mixed-strategy Nash equilibrium, all 3 should be equivalent. Let's call the probabilites of Player 2 choosing strategies N (no time), L (a little time), and M (a lot of time) $p$, $q$, and $1 - p - q$ respectively.
+
+          Thus, we have that:
+
+          \[v_1(N, p, q) = v_1(L, p, q) = v_1(M, p, q)\]
+          \[1.5 \cdot p + 0 \cdot q + 0 \cdot (1 - p - q) = 2 \cdot p + .5 \cdot q - 1 \cdot (1 - p - q) = 1 \cdot p + 1 \cdot q - .5 \cdot (1 - p - q)\]
+          \[1.5p = 2p + .5q - 1 + p + q = p + q - .5 + .5p + .5q\]
+          \[1.5p = 3p + 1.5q - 1 = 1.5p + 1.5q - .5\]
+
+          \[1.5p = 3p + 1.5q - 1\]
+          \[1.5p = 1 - 1.5q\]
+          \[p = \frac{2}{3} - q\]
+
+          \[3p + 1.5q - 1 = 1.5p + 1.5q - .5\]
+          \[1.5p = .5\]
+          \[p = \frac{1}{3}\]
+          \[\frac{2}{3} - q = \frac{1}{3}\]
+          \[q = \frac{1}{3}\]
+
+          \[1.5p = 3p + 1.5q - 1\]
+          \[1 = 1.5p + 1.5q\]
+          \[1 = 1.5p + 1.5 \cdot (\frac{1}{3})\]
+          \[1 = 1.5p + .5\]
+          \[.5 = 1.5p\]
+          \[p = \frac{1}{3}\]
+
+          \[1 - p - q = 1 - \frac{1}{3} = \frac{1}{3} = 1/3\]
+
+          The same proportions ($\frac{1}{3}, \frac{1}{3}, \frac{1}{3}$) apply to player 2 as well since the game is symetrical, so there exists a mix-strategy Nash equilibrium choosing each strategy with equal probability.
+
+    \item Cops and Robbers
+
+          Cooper is a cop, and Ralph is a robber. Cooper values hanging out at Dunkin quite a bit; let's call that experience a 10. If he were to go on patrol, he might catch Ralph in a robbery, which is worth 20. If he doesn't catch Ralph, that's 0. Ralph, on the other hand, could always hide, but that gets him nothing. If he goes out for a robbery and Cooper is having coffee, get scores a heist (+10); if, on the other hand, Cooper is *not* hanging out in donut heaven, Ralph will surely be caught (-10).
+
+          \begin{enumerate}[label=(\alph*)]
+              \item Write down the game in matrix form.
+          \end{enumerate}
+
+          \centerline{Ralph}
+          \begin{center}
+              Cooper
+              \begin{tabular}{|c|c|c|}
+                  \hline
+                                   & Hide  & Rob     \\ \hline
+                  Stay at Dunkin   & 10, 0 & 10, 10  \\ \hline
+                  Go out on patrol & 0, 0  & 20, -10 \\ \hline
+              \end{tabular}
+          \end{center}
+
+          \begin{enumerate}[resume]
+              \item Is there a pure-strategy Nash equilibrium?
+          \end{enumerate}
+
+          No.
+
+          \begin{enumerate}[resume]
+              \item Is there a mixed-strategy Nash equilibrium?
+          \end{enumerate}
+
+          Once again, we can prove this using the Nash existance theorem
+
+          We'll start with the payoff functions for player 1, Cooper, and assign his two possible actions, stay at Dunkin and patrol, D and P respectively. We'll call the probabilites of player 2, Ralph choosing his actions (hiding and robbing) p and 1 - p.
+
+          \[v_1(D, p) = v_1(P, p)\]
+          \[10 \cdot p + 10 \cdot (1 - p) = 0 \cdot p + 20 \cdot (1 - p)\]
+          \[10p + 10 - 10p = 20 - 20p\]
+          \[20p = 10\]
+          \[p = .5\]
+
+          \[1 - p = .5\]
+
+          So, there exists a pure-strategy Nash equilibrium for Cooper when he chooses each strategy with equal probability. Now let's do the same for Ralph, using the actions H (hide) and R (rob), and the probabilites of Cooper choosing his respective actions of q and 1 - q.
+
+          \[v_2(H, q) = v_2(R, q)\]
+          \[0 \cdot q + 0 \cdot (1 - q) = 10 \cdot q - 10 \cdot (1 - q)\]
+          \[0 = 10q - 10 + 10q\]
+          \[20q = 10\]
+          \[q = .5\]
+
+          \[1 - q = .5\]
+
+          So, the pure-strategy Nash equilibrium for Ralph also exists with him choosing each strategy with equal probability.
+
+    \item Continuous All Pay Auction
+
+          Consider an all-pay auction for a one-million-dollar bill. Let's count in millions and say $S_i \in [0, 1]$. Players care only about the expected value they will end up with (so if I bet 0.4 and expect to win with probability 0.7 then I get 0.3).
+
+          \begin{enumerate}[label=(\alph*)]
+              \item Write out the model as a normal-form game. (This is basically in your notes already.)
+          \end{enumerate}
+
+          \[N = \{1, 2\}\]
+          \[S_i \in [0, 1]\]
+          \[v_i(s_i, s_j) = \begin{cases}
+                  1 - s_i           & s_i > s_j \\
+                  \frac{1}{2} - s_i & s_i = s_j \\
+                  -s_i              & s_i < s_j
+              \end{cases}
+          \]
+
+          \begin{enumerate}[resume]
+              \item Show that this game has no pure-strategy Nash equilibrium by considering cases such as $s_i = s_j = 1$, $s_i = s_j < 1$, and $s_i > s_j \geq 0$; in the last case, for example, what might player i do to increase his payoff? (It can be useful to express tiny amounts by the traditional letter $\epsilon > 0$).
+          \end{enumerate}
+
+          If $s_i = s_j = 1$, the best response for player 1 will be to just move their bet to 0, because player 2 is betting the full million dollars, so if player 1 were to match that he would end up with a negative payoff. If player 1 goes lower, he will certainly loose the action anyway, so he should just bet 0.
+
+          If $s_i = s_j < 1$, $s_i$ can just move his bet $\epsilon$ higher (where $\epsilon \in (0, \frac{1 - s_i}{2})$), which will win him the auction with an expected value of $1 - s_i - \epsilon > 1 - [\frac{1 - s_i}{2}] = \frac{1}{2} - \frac{s_i}{2} > \frac{1}{2} - s_i$.
+
+          If $s_i > s_j \geq 0$, player 1 can just move his bet $\epsilon$ lower, where $\epsilon \in (s_i - s_j, s_i)$, so then he will still win the auction but spend less to do it (payoff of $1 - s_i + \epsilon > 1 - s_i$).
+
+          Therefore, for all possible strategy profiles there is a better response for player 1 (and therefore also player 2), so there is no pure strategy Nash equilibrium.
+
+          \begin{enumerate}[resume]
+              \item If each player i chooses an interval $[\underline{x_i}, \overline{x_i}]$ with $0 \leq x_i < x_i \leq 1$ via a continuous probability distribution over the interval, show that any mixed-strategy Nash equilibrium would require that $\underline{x_1} = \underline{x_2} = 0$ and $\overline{x_1} = \overline{x_2} = 1$. Use those facts to argue that if two such strategies are a Nash equilibrium then both players must be getting an expected payoff of zero.
+          \end{enumerate}
+
+          Lower bounds have to be equal cause cool graph thing ($x_1 = x_2$)
+
+          No player will choose lower bound value cause they will loose with probability 1 cause the other player will choose that with probability 0, so will be negative playoff. Because probability that both choose it is 0, so one will always loose.
+
+          So player will try to minimize loss and choose 0 because then he won't loose anything, avoiding negative payoff.
+
+          Player 1 will choose upper bound because he will always win, so player 2 will also choose upper bound to match that, and move up to win.
+
+          By def, because it's a Nash equilibrium anything in the support must have the same expected value, and because 0 is in the support then the expected payoff is zero.
+\end{enumerate}
+
+\end{document}
